@@ -32,13 +32,37 @@ ssdeeps$SCORE = as.numeric(ssdeeps$SCORE)
 
 save(ssdeeps, file = "/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.txt.Rdata")
 
-# dcast(data = dat,formula = id~variable,fun.aggregate = sum,value.var = "value")
 ```
 
 ```{r include=FALSE,eval=FALSE}
 load("/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.txt.Rdata")
+# dcast(data = dat,formula = id~variable,fun.aggregate = sum,value.var = "value")
+library(reshape2)
+ssdeepsMat = dcast(
+  data = ssdeeps,
+  formula = SEARCH ~ RESULT,
+  fun.aggregate = mean,
+  value.var = "SCORE"
+)
+rownames(ssdeepsMat) = ssdeepsMat$SEARCH
+ssdeepsMat$SEARCH = NULL
+
+save(ssdeepsMat, file = "/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.mat.txt.Rdata")
 
 ```
+
+
+```{r include=FALSE,eval=FALSE}
+# https://uc-r.github.io/hc_clustering
+load("/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.mat.txt.Rdata")
+ssdeepsMat[is.na(ssdeepsMat)] <- 0
+d <- dist(ssdeepsMat, method = "euclidean")
+
+hc1 <- hclust(d, method = "complete")
+save(hc1, file = "/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.mat.hclust.Rdata")
+
+```
+
 
 ## [ssdeep](https://github.com/ssdeep-project/ssdeep)
 
@@ -46,8 +70,10 @@ load("/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.txt.Rdata")
 
 ```{r}
 load("/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.txt.Rdata")
-
+load("/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.mat.txt.Rdata")
+load("/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.mat.hclust.Rdata")
 table(ssdeeps$SEARCH == ssdeeps$RESULT)
+
 
 hist(ssdeeps$SCORE)
 
