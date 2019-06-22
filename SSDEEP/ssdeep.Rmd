@@ -74,7 +74,13 @@ load("/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.mat.txt.Rdata")
 load("/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.mat.hclust.Rdata")
 table(ssdeeps$SEARCH == ssdeeps$RESULT)
 
-
+haplogroups = read.delim(
+  "/Users/Kitty/git/fluffyDNA/prep/haplogrep/haplogroups.txt",
+  header = TRUE,
+  stringsAsFactors = FALSE
+)
 hist(ssdeeps$SCORE)
+
+plot(hc1, cex = 0.6, hang = -1)
 
 ```
