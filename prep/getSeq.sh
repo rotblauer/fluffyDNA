@@ -31,6 +31,14 @@ bcftools query -l $vcfSplit \
 |bgzip --compress-level 9 > "$outDir/consensus.fa.gz"
 
 
+outDir=consensus/
+mkdir -p $outDir
+bcftools query -l $vcfSplit \
+|parallel -j4 "bcftools consensus -s {} -f $fasta $vcf |tail -n +2  > $outDir/{}.consensus.txt"
+
+
+
+
 
 # x-10-0-1-5:consensus Kitty$ zgrep ">" consensus.fa.gz |wc -l
 #      662

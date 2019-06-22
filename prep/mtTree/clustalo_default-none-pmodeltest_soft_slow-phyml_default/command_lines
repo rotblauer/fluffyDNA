@@ -1,0 +1,1 @@
+Sat Jun 22 10:39:24 2019	a73a21e1e62114de56fdddd1a1277928	False	/Users/Kitty/anaconda/bin/ete3 -C 4 -n ./consensus/consensus.fa.gz -w soft_modeltest -o mtTree/

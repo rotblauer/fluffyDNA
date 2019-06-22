@@ -1,0 +1,4 @@
+#!/bin/sh
+ (echo R > /Users/Kitty/git/fluffyDNA/prep/mtTree/tasks/a1d18df052fdb3b12be0a7314af6d268/__status__ && date +'%a %b %d %H:%M:%S %Y' > /Users/Kitty/git/fluffyDNA/prep/mtTree/tasks/a1d18df052fdb3b12be0a7314af6d268/__time__) &&
+ (cd /Users/Kitty/git/fluffyDNA/prep/mtTree/tasks/a1d18df052fdb3b12be0a7314af6d268 && /Users/Kitty/anaconda/bin/ete3_apps/bin/clustalo --threads 1 -o clustalo_alg.fasta -i /Users/Kitty/git/fluffyDNA/prep/mtTree/input/39743133968546c79e5ca3584e54dd53.100 --outfmt fa && (echo D > /Users/Kitty/git/fluffyDNA/prep/mtTree/tasks/a1d18df052fdb3b12be0a7314af6d268/__status__; ) || (echo E > /Users/Kitty/git/fluffyDNA/prep/mtTree/tasks/a1d18df052fdb3b12be0a7314af6d268/__status__; ));
+ date +'%a %b %d %H:%M:%S %Y' >> /Users/Kitty/git/fluffyDNA/prep/mtTree/tasks/a1d18df052fdb3b12be0a7314af6d268/__time__; 
