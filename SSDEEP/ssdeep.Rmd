@@ -7,6 +7,11 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+```{r  include=FALSE,eval=FALSE}
+
 ssdeeps = read.delim(
   "/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.txt.gz",
   header = FALSE,
@@ -25,6 +30,14 @@ ssdeeps$SCORE = gsub("(", "", ssdeeps$SCORE, fixed = TRUE)
 ssdeeps$SCORE = gsub(")", "", ssdeeps$SCORE, fixed = TRUE)
 ssdeeps$SCORE = as.numeric(ssdeeps$SCORE)
 
+save(ssdeeps, file = "/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.txt.Rdata")
+
+# dcast(data = dat,formula = id~variable,fun.aggregate = sum,value.var = "value")
+```
+
+```{r include=FALSE,eval=FALSE}
+load("/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.txt.Rdata")
+
 ```
 
 ## [ssdeep](https://github.com/ssdeep-project/ssdeep)
@@ -32,6 +45,7 @@ ssdeeps$SCORE = as.numeric(ssdeeps$SCORE)
 
 
 ```{r}
+load("/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.txt.Rdata")
 
 table(ssdeeps$SEARCH == ssdeeps$RESULT)
 
