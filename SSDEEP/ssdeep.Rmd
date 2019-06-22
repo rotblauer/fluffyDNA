@@ -1,0 +1,40 @@
+---
+title: "SSDEEP"
+author: "JL"
+date: "6/22/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+ssdeeps = read.delim(
+  "/Users/Kitty/git/fluffyDNA/prep/ssdeep/ssdeep.match.txt.gz",
+  header = FALSE,
+  stringsAsFactors = FALSE,
+  sep = " "
+)
+
+ssdeeps$V2 = NULL
+colnames(ssdeeps) = c("SEARCH", "RESULT", "SCORE")
+ssdeeps$SEARCH = gsub(".consensus.txt", "", ssdeeps$SEARCH)
+
+ssdeeps$RESULT = gsub(".consensus.txt", "", ssdeeps$RESULT)
+ssdeeps$RESULT = gsub("./ssdeep/ssdeep.txt:", "", ssdeeps$RESULT)
+
+ssdeeps$SCORE = gsub("(", "", ssdeeps$SCORE, fixed = TRUE)
+ssdeeps$SCORE = gsub(")", "", ssdeeps$SCORE, fixed = TRUE)
+ssdeeps$SCORE = as.numeric(ssdeeps$SCORE)
+
+```
+
+## [ssdeep](https://github.com/ssdeep-project/ssdeep)
+
+
+
+```{r}
+
+table(ssdeeps$SEARCH == ssdeeps$RESULT)
+
+hist(ssdeeps$SCORE)
+
+```
