@@ -83,4 +83,15 @@ hist(ssdeeps$SCORE)
 
 plot(hc1, cex = 0.6, hang = -1)
 
+
+
+library(plotly)
+p <-
+  plot_ly(
+    x = ssdeeps$SEARCH,
+    y = ssdeeps$RESULT,
+    z = ssdeeps$SCORE,
+    type = "heatmap"
+  )
+p
 ```
