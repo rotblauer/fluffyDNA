@@ -1,0 +1,1 @@
+Sun Jun 23 15:17:48 2019	f3af9de06205b036c5cbaeb4b1e0fbc4	False	/Users/Kitty/anaconda/bin/ete3 -C 4 -n ./consensus/consensus.fa.gz -w full_ultrafast_modeltest -o mtTreeFast/
